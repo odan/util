@@ -1,13 +1,5 @@
 <?php
 
-/**
- * Generates a normalized URI for the given path.
- *
- * @param string $path A path to use instead of the current one
- * @param boolean $full return absolute or relative url
- * @return string The normalized URI for the path
- */
-
 namespace Odan\Util\Test;
 
 /**
