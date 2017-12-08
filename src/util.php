@@ -45,36 +45,30 @@ function now()
 /**
  * Returns a `UUID` v4 created from a cryptographically secure random value.
  *
- * @return string UUID version 4
+ * @see https://www.ietf.org/rfc/rfc4122.txt
+ * @return string RFC 4122 UUID
+ * @throws Exception
  */
 function uuid()
 {
-    // Generate a cryptographically secure random value
-    $bytes = openssl_random_pseudo_bytes(16);
-    $hash = bin2hex($bytes);
-
-    // Applies the RFC 4122 version number to the `time_hi_and_version` field
-    $version = 4;
-    $timeHi = hexdec(substr($hash, 12, 4)) & 0x0fff;
-    $timeHi &= ~(0xf000);
-    $timeHi |= $version << 12;
-
-    // Applies the RFC 4122 variant field to the `clock_seq_hi_and_reserved` field
-    $clockSeqHi = hexdec(substr($hash, 16, 2));
-    $clockSeqHi = $clockSeqHi & 0x3f;
-    $clockSeqHi &= ~(0xc0);
-    $clockSeqHi |= 0x80;
-
-    $fields = array(
-        'time_low' => substr($hash, 0, 8),
-        'time_mid' => substr($hash, 8, 4),
-        'time_hi_and_version' => str_pad(dechex($timeHi), 4, '0', STR_PAD_LEFT),
-        'clock_seq_hi_and_reserved' => str_pad(dechex($clockSeqHi), 2, '0', STR_PAD_LEFT),
-        'clock_seq_low' => substr($hash, 18, 2),
-        'node' => substr($hash, 20, 12),
+    return sprintf(
+        '%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
+        // 32 bits for "time_low"
+        random_int(0, 65535),
+        random_int(0, 65535),
+        // 16 bits for "time_mid"
+        random_int(0, 65535),
+        // 12 bits before the 0100 of (version) 4 for "time_hi_and_version"
+        random_int(0, 4095) | 0x4000,
+        // 16 bits, 8 bits for "clk_seq_hi_res",
+        // 8 bits for "clk_seq_low",
+        // two most significant bits holds zero and one for variant DCE1.1
+        random_int(0, 0x3fff) | 0x8000,
+        // 48 bits for "node"
+        random_int(0, 65535),
+        random_int(0, 65535),
+        random_int(0, 65535)
     );
-
-    return vsprintf('%08s-%04s-%04s-%02s%02s-%012s', array_values($fields));
 }
 
 /**
