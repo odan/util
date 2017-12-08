@@ -10,7 +10,7 @@ composer require odan/util
 
 ## Functions
 
-* gh -  Convert all applicable characters to HTML entities.
+* html -  Convert all applicable characters to HTML entities.
 * is_email - Validate a E-Mail address
 * now - ISO date time (Y-m-d H:i:s)
 * uuid - Returns a `UUID` v4 created from a cryptographically secure random value
