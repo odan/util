@@ -6,19 +6,9 @@
  * @param string $text
  * @return string
  */
-function gh($text)
+function html($text)
 {
     return htmlspecialchars($text, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
-}
-
-/**
- * Write html encoded string.
- *
- * @param string $str
- */
-function wh($str)
-{
-    echo gh($str);
 }
 
 /**
