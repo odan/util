@@ -62,27 +62,27 @@ function uuid()
 }
 
 /**
- * Return Array element value (get value).
+ * Return Array element value.
  *
- * @param array $arr
+ * @param array $array
  * @param string $path
  * @param null|mixed $default
  * @return mixed
  *
  * <code>
- * echo value($arr, 'id');
- * echo value($arr, 'city.country.name');
- * echo value($arr, 'city.name');
- * echo value($arr, 'city.zip', 'not set');
+ * echo array_value($array, 'id');
+ * echo array_value($array, 'city.country.name');
+ * echo array_value($array, 'city.name');
+ * echo array_value($array, 'city.zip', 'not set');
  * </code>
  */
-function value($arr, $path, $default = null)
+function array_value($array, $path, $default = null)
 {
-    if (!is_array($arr)) {
+    if (!is_array($array)) {
         return $default;
     }
 
-    $cursor = $arr;
+    $cursor = $array;
     $keys = explode('.', $path);
 
     foreach ($keys as $key) {
