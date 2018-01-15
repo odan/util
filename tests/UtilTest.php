@@ -148,5 +148,4 @@ class UtilTest extends \PHPUnit\Framework\TestCase
     {
         read('./error_file_path');
     }
-
 }

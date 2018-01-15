@@ -172,15 +172,15 @@ function encode_iso($data)
 }
 
 /**
- * Read php file.
+ * Read a PHP file.
  *
  * @param string $file File
  * @return mixed Data
  */
 function read($file)
 {
-    if(!file_exists($file)) {
-        throw new \InvalidArgumentException('file'.$file.' is not found.');
+    if (!file_exists($file)) {
+        throw new InvalidArgumentException(sprintf('File %s not found', $file));
     }
 
     return require $file;
