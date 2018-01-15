@@ -179,5 +179,9 @@ function encode_iso($data)
  */
 function read($file)
 {
+    if(!file_exists($file)) {
+        throw new \InvalidArgumentException('file'.$file.' is not found.');
+    }
+
     return require $file;
 }
