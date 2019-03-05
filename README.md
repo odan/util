@@ -21,6 +21,7 @@ composer require odan/util
 * html -  Convert all applicable characters to HTML entities.
 * is_email - Validate a E-Mail address
 * uuid - Returns a `UUID` v4 created from a cryptographically secure random value
+* array_value - Return Array element value, with dot notation.
 * encode_utf8 - Encodes an ISO-8859-1 string or array to UTF-8.
 * encode_iso - Returns a ISO-8859-1 encoded string or array
 * read - Read a php file

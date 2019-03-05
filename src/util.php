@@ -52,10 +52,79 @@ function uuid()
 }
 
 /**
+ * Return Array element value.
+ *
+ * @param array $array
+ * @param string $path
+ * @param null|mixed $default
+ * @return mixed
+ *
+ * <code>
+ * echo array_value($array, 'id');
+ * echo array_value($array, 'city.country.name');
+ * echo array_value($array, 'city.name');
+ * echo array_value($array, 'city.zip', 'not set');
+ * </code>
+ */
+function array_value(array $array, string $path, $default = null)
+{
+    if (strpos($path, '.') === false) {
+        return $array[$path] ?? $default;
+    }
+
+    $cursor = $array;
+    $keys = explode('.', $path);
+
+    foreach ($keys as $key) {
+        if (isset($cursor[$key])) {
+            $cursor = $cursor[$key];
+        } else {
+            return $default;
+        }
+    }
+
+    return $cursor;
+}
+
+/**
+ * Encode an array to JSON
+ *
+ * Also makes sure the data is encoded in UTF-8.
+ *
+ * @param mixed $data The array to encode in JSON.
+ * @param int $options The encoding options.
+ *
+ * @throws RuntimeException
+ *
+ * @return string The JSON encoded string.
+ */
+function encode_json($data, int $options = 0): string
+{
+    $result = json_encode(encode_utf8($data), $options);
+
+    if($result === false) {
+        throw new RuntimeException('Json encoding failed');
+    }
+
+    return $result;
+}
+
+/**
+ * Json decoder
+ *
+ * @param string $json Json string
+ *
+ * @return mixed The value encoded in json in appropriate PHP type.
+ */
+function decode_json(string $json)
+{
+    return json_decode($json, true);
+}
+
+/**
  * Encodes an ISO-8859-1 string or array to UTF-8.
  *
  * @param mixed $data String or array to convert.
- *
  * @return mixed Encoded data.
  */
 function encode_utf8($data)
@@ -67,13 +136,14 @@ function encode_utf8($data)
         foreach ($data as $key => $value) {
             $data[$key] = encode_utf8($value);
         }
+
         return $data;
     } else {
         if (!mb_check_encoding($data, 'UTF-8')) {
             return mb_convert_encoding($data, 'UTF-8');
-        } else {
-            return $data;
         }
+
+        return $data;
     }
 }
 
@@ -81,7 +151,6 @@ function encode_utf8($data)
  * Returns a ISO-8859-1 encoded string or array.
  *
  * @param mixed $data String or array to convert.
- *
  * @return mixed Encoded data.
  */
 function encode_iso($data)
@@ -89,17 +158,19 @@ function encode_iso($data)
     if ($data === null || $data === '') {
         return $data;
     }
+
     if (is_array($data)) {
         foreach ($data as $key => $value) {
             $data[$key] = encode_iso($value);
         }
+
         return $data;
     } else {
         if (mb_check_encoding($data, 'UTF-8')) {
             return mb_convert_encoding($data, 'ISO-8859-1', 'auto');
-        } else {
-            return $data;
         }
+
+        return $data;
     }
 }
 
@@ -107,7 +178,6 @@ function encode_iso($data)
  * Read a PHP file.
  *
  * @param string $file File
- *
  * @return mixed Data
  */
 function read($file)
