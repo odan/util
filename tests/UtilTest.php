@@ -13,48 +13,10 @@ class UtilTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function testNow()
-    {
-        $this->assertSame(date('Y-m-d H:i:s'), now());
-    }
-
-    /**
-     * Test.
-     *
-     * @return void
-     */
     public function testUuid()
     {
         $actual = preg_match('/^[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i', uuid());
         $this->assertSame(1, $actual);
-    }
-
-    /**
-     * Test.
-     *
-     * @return void
-     */
-    public function testArrayValue()
-    {
-        $arr = array(
-            'key' => 1,
-            'sub' => array(
-                'sub2' => 'test'
-            )
-        );
-        $this->assertSame(1, array_value($arr, 'key'));
-        $this->assertSame(null, array_value($arr, 'nada'));
-        $this->assertSame('test', array_value($arr, 'sub.sub2'));
-    }
-
-    /**
-     * Test.
-     *
-     * @return void
-     */
-    public function testArrayValueWithNotArrayArgument()
-    {
-        $this->assertNull(array_value('invalid_array', 'path'));
     }
 
     /**
@@ -77,33 +39,6 @@ class UtilTest extends \PHPUnit\Framework\TestCase
     {
         $this->assertTrue(is_email('name@example.com'));
         $this->assertFalse(is_email('invalid_email_address'));
-    }
-
-    /**
-     * Test.
-     *
-     * @return void
-     */
-    public function testEncodeJson()
-    {
-        $jsonArr = array(
-            'key1' => 'value1',
-            'key2' => 'value2',
-        );
-        $this->assertSame('{"key1":"value1","key2":"value2"}', encode_json($jsonArr));
-    }
-
-    /**
-     * Test.
-     *
-     * @return void
-     */
-    public function testDecodeJson()
-    {
-        $jsonStr = '{"key1":"value1","key2":"value2"}';
-        $decodeArr = decode_json($jsonStr, true);
-        $this->assertArrayHasKey('key1', $decodeArr);
-        $this->assertArrayHasKey('key2', $decodeArr);
     }
 
     /**
