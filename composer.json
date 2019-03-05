@@ -11,14 +11,14 @@
     "iso",
     "encoding"
   ],
-  "homepage": "http://github.com/odan/util",
+  "homepage": "https://github.com/odan/util",
   "license": "MIT",
   "require": {
     "php": ">=7.0",
     "ext-mbstring": "*"
   },
   "require-dev": {
-    "phpunit/phpunit": "^6.0",
+    "phpunit/phpunit": "^7.0",
     "ext-mbstring": "*"
   },
   "scripts": {
