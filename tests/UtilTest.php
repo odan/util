@@ -1,11 +1,13 @@
 <?php
 
-namespace Odan\Util\Test;
+namespace Selective\Util\Test;
+
+use PHPUnit\Framework\TestCase;
 
 /**
  * UtilTest
  */
-class UtilTest extends \PHPUnit\Framework\TestCase
+class UtilTest extends TestCase
 {
 
     /**
