@@ -93,6 +93,18 @@ class UtilTest extends TestCase
      *
      * @return void
      */
+    public function testEncodeJsonOnJsonSerializable(): void
+    {
+        $jsonObject = new FooJson();
+
+        $this->assertSame('{"key":"value"}', encode_json($jsonObject));
+    }
+
+    /**
+     * Test.
+     *
+     * @return void
+     */
     public function testDecodeJson(): void
     {
         $jsonStr = '{"key1":"value1","key2":"value2"}';
