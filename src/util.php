@@ -71,6 +71,10 @@ function array_value(array $array, string $path, $default = null)
  */
 function encode_json($data, int $options = 0): string
 {
+    if ($data instanceof JsonSerializable) {
+        $data = $data->jsonSerialize();
+    }
+
     $result = json_encode(encode_utf8($data), $options);
 
     if($result === false) {
