@@ -15,17 +15,6 @@ class UtilTest extends TestCase
      *
      * @return void
      */
-    public function testUuid(): void
-    {
-        $actual = preg_match('/^[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i', uuid());
-        $this->assertSame(1, $actual);
-    }
-
-    /**
-     * Test.
-     *
-     * @return void
-     */
     public function testArrayValue()
     {
         $arr = array(
