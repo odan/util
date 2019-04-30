@@ -5,11 +5,10 @@ namespace Selective\Util\Test;
 use PHPUnit\Framework\TestCase;
 
 /**
- * UtilTest
+ * UtilTest.
  */
 class UtilTest extends TestCase
 {
-
     /**
      * Test.
      *
@@ -17,12 +16,12 @@ class UtilTest extends TestCase
      */
     public function testArrayValue()
     {
-        $arr = array(
+        $arr = [
             'key' => 1,
-            'sub' => array(
-                'sub2' => 'test'
-            )
-        );
+            'sub' => [
+                'sub2' => 'test',
+            ],
+        ];
         $this->assertSame(1, array_value($arr, 'key'));
         $this->assertNull(array_value($arr, 'nada'));
         $this->assertNull(array_value($arr, '..'));
@@ -70,10 +69,10 @@ class UtilTest extends TestCase
      */
     public function testEncodeJson(): void
     {
-        $jsonArr = array(
+        $jsonArr = [
             'key1' => 'value1',
             'key2' => 'value2',
-        );
+        ];
         $this->assertSame('{"key1":"value1","key2":"value2"}', encode_json($jsonArr));
     }
 
@@ -131,14 +130,14 @@ class UtilTest extends TestCase
      */
     public function testEncodeIsoWithArrayArgument(): void
     {
-        $isoResult = encode_iso(array('123'));
+        $isoResult = encode_iso(['123']);
         $this->assertSame('123', $isoResult[0]);
     }
 
     /**
      * Test.
      *
-     * @expectedException InvalidArgumentException
+     * @expectedException \InvalidArgumentException
      */
     public function testReadWithErrorFilePath(): void
     {

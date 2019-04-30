@@ -4,6 +4,7 @@
  * Convert all applicable characters to HTML entities.
  *
  * @param string $text
+ *
  * @return string
  */
 function html($text)
@@ -12,10 +13,11 @@ function html($text)
 }
 
 /**
- * Validate E-Mail address
+ * Validate E-Mail address.
  *
  * @param string $email
- * @return boolean
+ *
+ * @return bool
  */
 function is_email($email = null)
 {
@@ -27,7 +29,8 @@ function is_email($email = null)
  *
  * @param array $array
  * @param string $path
- * @param null|mixed $default
+ * @param mixed|null $default
+ *
  * @return mixed
  *
  * <code>
@@ -58,16 +61,16 @@ function array_value(array $array, string $path, $default = null)
 }
 
 /**
- * Encode an array to JSON
+ * Encode an array to JSON.
  *
  * Also makes sure the data is encoded in UTF-8.
  *
- * @param mixed $data The array to encode in JSON.
- * @param int $options The encoding options.
+ * @param mixed $data the array to encode in JSON
+ * @param int $options the encoding options
  *
  * @throws RuntimeException
  *
- * @return string The JSON encoded string.
+ * @return string the JSON encoded string
  */
 function encode_json($data, int $options = 0): string
 {
@@ -77,7 +80,7 @@ function encode_json($data, int $options = 0): string
 
     $result = json_encode(encode_utf8($data), $options);
 
-    if($result === false) {
+    if ($result === false) {
         throw new RuntimeException('Json encoding failed');
     }
 
@@ -85,11 +88,11 @@ function encode_json($data, int $options = 0): string
 }
 
 /**
- * Json decoder
+ * Json decoder.
  *
  * @param string $json Json string
  *
- * @return mixed The value encoded in json in appropriate PHP type.
+ * @return mixed the value encoded in json in appropriate PHP type
  */
 function decode_json(string $json)
 {
@@ -99,8 +102,9 @@ function decode_json(string $json)
 /**
  * Encodes an ISO-8859-1 string or array to UTF-8.
  *
- * @param mixed $data String or array to convert.
- * @return mixed Encoded data.
+ * @param mixed $data string or array to convert
+ *
+ * @return mixed encoded data
  */
 function encode_utf8($data)
 {
@@ -125,8 +129,9 @@ function encode_utf8($data)
 /**
  * Returns a ISO-8859-1 encoded string or array.
  *
- * @param mixed $data String or array to convert.
- * @return mixed Encoded data.
+ * @param mixed $data string or array to convert
+ *
+ * @return mixed encoded data
  */
 function encode_iso($data)
 {
@@ -153,6 +158,7 @@ function encode_iso($data)
  * Read a PHP file.
  *
  * @param string $file File
+ *
  * @return mixed Data
  */
 function read($file)
