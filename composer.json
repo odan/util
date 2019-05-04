@@ -1,17 +1,15 @@
 {
-    "name": "selective/util",
+    "name": "selective/encoding",
     "type": "library",
-    "description": "Utility functions",
+    "description": "Encoding functions",
     "keywords": [
-        "util",
-        "uuid",
         "html",
-        "array",
         "utf8",
         "iso",
+        "json",
         "encoding"
     ],
-    "homepage": "https://github.com/selective-php/util",
+    "homepage": "https://github.com/selective-php/encoding",
     "license": "MIT",
     "require": {
         "php": ">=7.1",
@@ -35,13 +33,13 @@
         "check-cs": "php build/php-cs-fixer-v2.phar fix --dry-run --format=txt --verbose --diff --diff-format=udiff --config=.cs.php"
     },
     "autoload": {
-        "files": [
-            "src/util.php"
-        ]
+        "psr-4": {
+            "Selective\\Encoding\\": "src"
+        }
     },
     "autoload-dev": {
         "psr-4": {
-            "Selective\\Util\\Test\\": "tests"
+            "Selective\\Encoding\\Test\\": "tests"
         }
     },
     "config": {
