@@ -1,8 +1,10 @@
 <?php
 
-namespace Selective\Util\Test;
+namespace Selective\Encoding\Test;
 
-class FooJson implements \JsonSerializable
+use JsonSerializable;
+
+class FooJson implements JsonSerializable
 {
     private $key = 'value';
 
