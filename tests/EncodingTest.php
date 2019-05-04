@@ -35,7 +35,7 @@ class EncodingTest extends TestCase
             'key1' => 'value1',
             'key2' => 'value2',
         ];
-        $this->assertSame('{"key1":"value1","key2":"value2"}', (new JsonEncoding())->encode($jsonArr));
+        $this->assertSame('{"key1":"value1","key2":"value2"}', (new JsonEncoding())->encodeJson($jsonArr));
     }
 
     /**
@@ -47,7 +47,7 @@ class EncodingTest extends TestCase
     {
         $jsonObject = new FooJson();
 
-        $this->assertSame('{"key":"value"}', (new JsonEncoding())->encode($jsonObject));
+        $this->assertSame('{"key":"value"}', (new JsonEncoding())->encodeJson($jsonObject));
     }
 
     /**
@@ -58,30 +58,30 @@ class EncodingTest extends TestCase
     public function testDecodeJson(): void
     {
         $jsonStr = '{"key1":"value1","key2":"value2"}';
-        $decodeArr = (new JsonEncoding())->decode($jsonStr);
+        $decodeArr = (new JsonEncoding())->decodeJson($jsonStr);
         $this->assertArrayHasKey('key1', $decodeArr);
         $this->assertArrayHasKey('key2', $decodeArr);
 
-        $decodeArr = (new JsonEncoding())->decode('{}');
+        $decodeArr = (new JsonEncoding())->decodeJson('{}');
         $this->assertIsArray($decodeArr);
         $this->assertEmpty($decodeArr);
 
-        $decodeArr = (new JsonEncoding())->decode('"null"');
+        $decodeArr = (new JsonEncoding())->decodeJson('"null"');
         $this->assertSame('null', $decodeArr);
 
-        $decodeArr = (new JsonEncoding())->decode('null');
+        $decodeArr = (new JsonEncoding())->decodeJson('null');
         $this->assertNull($decodeArr);
 
-        $decodeArr = (new JsonEncoding())->decode('"false"');
+        $decodeArr = (new JsonEncoding())->decodeJson('"false"');
         $this->assertSame('false', $decodeArr);
 
-        $decodeArr = (new JsonEncoding())->decode('false');
+        $decodeArr = (new JsonEncoding())->decodeJson('false');
         $this->assertFalse($decodeArr);
 
-        $decodeArr = (new JsonEncoding())->decode('"true"');
+        $decodeArr = (new JsonEncoding())->decodeJson('"true"');
         $this->assertSame('true', $decodeArr);
 
-        $decodeArr = (new JsonEncoding())->decode('true');
+        $decodeArr = (new JsonEncoding())->decodeJson('true');
         $this->assertTrue($decodeArr);
     }
 

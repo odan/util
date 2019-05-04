@@ -31,11 +31,11 @@ final class JsonEncoding
      *
      * @param mixed $data the array to encode in JSON
      *
-     * @throws RuntimeException
+     * @throws JsonException
      *
      * @return string the JSON encoded string
      */
-    public function encode($data): string
+    public function encodeJson($data): string
     {
         if ($data instanceof JsonSerializable) {
             $data = $data->jsonSerialize();
@@ -59,7 +59,7 @@ final class JsonEncoding
      *
      * @return mixed the value encoded in json in appropriate PHP type
      */
-    public function decode(string $json)
+    public function decodeJson(string $json)
     {
         return json_decode($json, true, 512, JSON_THROW_ON_ERROR);
     }
