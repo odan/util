@@ -101,6 +101,17 @@ class EncodingTest extends TestCase
      *
      * @return void
      */
+    public function testEncodeUtf8WithNonUtf8(): void
+    {
+        $data = "\x00\x81";
+        $this->assertNotSame($data, (new Utf8Encoding())->encodeUtf8($data));
+    }
+
+    /**
+     * Test.
+     *
+     * @return void
+     */
     public function testEncodeIsoWithNullArgument(): void
     {
         $this->assertSame('', (new IsoEncoding())->encodeIso(''));
@@ -116,5 +127,16 @@ class EncodingTest extends TestCase
     {
         $isoResult = (new IsoEncoding())->encodeIso(['123']);
         $this->assertSame('123', $isoResult[0]);
+    }
+
+    /**
+     * Test.
+     *
+     * @return void
+     */
+    public function testEncodeIsoWithNonUtf8Data(): void
+    {
+        $data = "\x00\x81";
+        $this->assertSame($data, (new IsoEncoding())->encodeIso($data));
     }
 }
