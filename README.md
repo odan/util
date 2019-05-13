@@ -15,6 +15,11 @@ Encoding functions
 composer require selective/encoding
 ```
 
+## Requirements
+
+* PHP >= 7.3
+* mbstring extension
+
 ## Features
 
 * HTML encoding -  Convert all applicable characters to HTML entities.
