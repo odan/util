@@ -7,6 +7,7 @@ use Selective\Encoding\HtmlEncoding;
 use Selective\Encoding\IsoEncoding;
 use Selective\Encoding\JsonEncoding;
 use Selective\Encoding\Utf8Encoding;
+use Selective\Encoding\UnicodeWidthForm;
 
 /**
  * Test.
@@ -138,5 +139,31 @@ class EncodingTest extends TestCase
     {
         $data = "\x00\x81";
         $this->assertSame($data, (new IsoEncoding())->encodeIso($data));
+    }
+
+    /**
+     * Test.
+     *
+     * @return void
+     */
+    public function testUnicodeWidthFormWithFullWidthString(): void
+    {
+        $string = '012345678090古';
+        $unicodeWidthForm = new UnicodeWidthForm();
+
+        $this->assertSame('０１２３４５６７８０９０古', $unicodeWidthForm->encodeFullWidthString($string));
+    }
+
+    /**
+     * Test.
+     *
+     * @return void
+     */
+    public function testUnicodeWidthFormWithHalfWidthString(): void
+    {
+        $string = '！＠＃＃＄＄％古';
+        $unicodeWidthForm = new UnicodeWidthForm();
+
+        $this->assertSame('!@##$$%', $unicodeWidthForm->encodeHalfWidthString($string));
     }
 }
