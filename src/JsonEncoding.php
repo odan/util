@@ -4,7 +4,6 @@ namespace Selective\Encoding;
 
 use JsonException;
 use JsonSerializable;
-use RuntimeException;
 
 /**
  * JSON encoding.
