@@ -81,7 +81,6 @@ class EncodingTest extends TestCase
 
             throw $exception;
         }
-
     }
 
     /**
