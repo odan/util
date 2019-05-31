@@ -7,7 +7,9 @@ namespace Selective\Encoding;
  */
 final class UnicodeWidthForm
 {
-    /** @var Utf8Encoding */
+    /**
+     * @var Utf8Encoding
+     */
     private $utf8Encode;
 
     /**

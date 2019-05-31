@@ -43,7 +43,7 @@ final class JsonEncoding
         $result = json_encode($this->utf8Encoding->encodeUtf8($data), JSON_THROW_ON_ERROR, 512);
 
         if (!$result) {
-            throw new JsonException('Json encoding failed');
+            throw new JsonException('Json encoding failed. Malformed UTF-8 characters, possibly incorrectly encoded');
         }
 
         return $result;
