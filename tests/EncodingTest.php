@@ -2,6 +2,8 @@
 
 namespace Selective\Encoding\Test;
 
+use JsonException;
+use phpmock\MockBuilder;
 use PHPUnit\Framework\TestCase;
 use Selective\Encoding\HtmlEncoding;
 use Selective\Encoding\IsoEncoding;
@@ -56,6 +58,28 @@ class EncodingTest extends TestCase
      *
      * @return void
      */
+    public function testEncodeJsonWithException(): void
+    {
+        $this->expectException(JsonException::class);
+
+        $builder = new MockBuilder();
+        $builder->setNamespace('Selective\Encoding')
+            ->setName('mb_convert_encoding')
+            ->setFunction(static function ($string) {
+                return $string;
+            });
+
+        $mock = $builder->build();
+        $mock->enable();
+
+        (new JsonEncoding())->encodeJson("\x80");
+    }
+
+    /**
+     * Test.
+     *
+     * @return void
+     */
     public function testDecodeJson(): void
     {
         $jsonStr = '{"key1":"value1","key2":"value2"}';
@@ -84,6 +108,17 @@ class EncodingTest extends TestCase
 
         $decodeArr = (new JsonEncoding())->decodeJson('true');
         $this->assertTrue($decodeArr);
+    }
+
+    /**
+     * Test.
+     *
+     * @return void
+     */
+    public function testDecodeJsonWithException(): void
+    {
+        $this->expectException(JsonException::class);
+        (new JsonEncoding())->decodeJson('{');
     }
 
     /**
