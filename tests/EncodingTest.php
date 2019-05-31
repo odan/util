@@ -6,8 +6,8 @@ use PHPUnit\Framework\TestCase;
 use Selective\Encoding\HtmlEncoding;
 use Selective\Encoding\IsoEncoding;
 use Selective\Encoding\JsonEncoding;
-use Selective\Encoding\Utf8Encoding;
 use Selective\Encoding\UnicodeWidthForm;
+use Selective\Encoding\Utf8Encoding;
 
 /**
  * Test.
