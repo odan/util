@@ -59,7 +59,7 @@ class EncodingTest extends TestCase
      *
      * @return void
      */
-    public function xtestEncodeJsonWithException(): void
+    public function testEncodeJsonWithException(): void
     {
         $this->expectException(JsonException::class);
 
