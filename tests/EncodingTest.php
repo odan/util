@@ -166,4 +166,17 @@ class EncodingTest extends TestCase
 
         $this->assertSame('!@##$$%', $unicodeWidthForm->encodeHalfWidthString($string));
     }
+
+    /**
+     * Test.
+     *
+     * @return void
+     */
+    public function testUnicodeWithEmptyString(): void
+    {
+        $unicodeWidthForm = new UnicodeWidthForm();
+
+        $this->assertSame('', $unicodeWidthForm->encodeHalfWidthString(''));
+        $this->assertSame('', $unicodeWidthForm->encodeFullWidthString(''));
+    }
 }
