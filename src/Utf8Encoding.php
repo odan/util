@@ -19,18 +19,19 @@ final class Utf8Encoding
         if ($data === null || $data === '') {
             return $data;
         }
+
         if (is_array($data)) {
             foreach ($data as $key => $value) {
                 $data[$key] = $this->encodeUtf8($value);
             }
 
             return $data;
-        } else {
-            if (!mb_check_encoding($data, 'UTF-8')) {
-                return mb_convert_encoding($data, 'UTF-8');
-            }
-
-            return $data;
         }
+
+        if (!mb_check_encoding($data, 'UTF-8')) {
+            return mb_convert_encoding($data, 'UTF-8');
+        }
+
+        return $data;
     }
 }

@@ -26,12 +26,12 @@ final class IsoEncoding
             }
 
             return $data;
-        } else {
-            if (mb_check_encoding($data, 'UTF-8')) {
-                return mb_convert_encoding($data, 'ISO-8859-1', 'auto');
-            }
-
-            return $data;
         }
+
+        if (mb_check_encoding($data, 'UTF-8')) {
+            return mb_convert_encoding($data, 'ISO-8859-1', 'auto');
+        }
+
+        return $data;
     }
 }
