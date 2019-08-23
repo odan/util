@@ -11,6 +11,7 @@ use Selective\Encoding\IsoEncoding;
 use Selective\Encoding\JsonEncoding;
 use Selective\Encoding\UnicodeWidthForm;
 use Selective\Encoding\Utf8Encoding;
+use stdClass;
 
 /**
  * Test.
@@ -149,6 +150,17 @@ class EncodingTest extends TestCase
     {
         $data = "\x00\x81";
         $this->assertNotSame($data, (new Utf8Encoding())->encodeUtf8($data));
+    }
+
+    /**
+     * Test.
+     *
+     * @return void
+     */
+    public function testEncodeUtf8WithObject(): void
+    {
+        $data = new stdClass();
+        $this->assertSame($data, (new Utf8Encoding())->encodeUtf8($data));
     }
 
     /**
