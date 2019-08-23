@@ -10,9 +10,9 @@ final class IsoEncoding
     /**
      * Returns a ISO-8859-1 encoded string or array.
      *
-     * @param mixed $data string or array to convert
+     * @param mixed $data The string or array to convert
      *
-     * @return mixed encoded data
+     * @return mixed The encoded data
      */
     public function encodeIso($data)
     {

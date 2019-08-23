@@ -28,11 +28,11 @@ final class JsonEncoding
      *
      * Also makes sure the data is encoded in UTF-8.
      *
-     * @param mixed $data the array to encode in JSON
+     * @param mixed $data The array to encode in JSON
      *
      * @throws JsonException
      *
-     * @return string the JSON encoded string
+     * @return string The JSON encoded string
      */
     public function encodeJson($data): string
     {
