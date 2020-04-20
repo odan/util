@@ -26,3 +26,11 @@ composer require selective/encoding
 * UTF-8 encoding - Encodes an ISO-8859-1 string or array to UTF-8.
 * ISO encoding - Returns a ISO-8859-1 encoded string or array.
 * JSON encoding - Encode data to json and back.
+
+## Similar libraries
+
+* https://github.com/symfony/serializer
+
+## License
+
+* MIT
