@@ -29,6 +29,7 @@ composer require selective/encoding
 
 ## Similar libraries
 
+* https://github.com/symfony/string
 * https://github.com/symfony/serializer
 
 ## License
